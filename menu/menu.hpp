@@ -38,9 +38,8 @@ private:
 
 public:
     template<typename ... Buttons>
-    Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount)/* , buttons_(buttons ...) */{
-        // assert(sizeof...(Buttons) == buttonCount_); // TODO: make asserts befor initing 
-        // assert(buttonCount_ <= maxButtonCount_); 
+    Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount) {
+        assert(sizeof...(Buttons) == buttonCount_); 
         buttons_ = {buttons ...};
     }; 
 
