@@ -31,9 +31,12 @@ private:
     size_t currentButton_ = 0;
     Button buttons_[maxButtonCount_];
 
+    void Draw();
+
 public:
     Menu(size_t buttonCount); // i need to make variadic parameters of this constructor
                               // because i should init buttons
+
     void ChooseButton();
 };
 
