@@ -6,6 +6,18 @@
 
 #include "menu/menu.hpp"
 
+void Hello() {
+    std::cout << "hello" << std::endl;
+}
+
+void Bye() {
+    std::cout << "Bye" << std::endl;
+}
+
+void Aboba() {
+    std::cout << "Aboba" << std::endl;
+}
+
 class Position {
 public:
     size_t x_;
@@ -55,7 +67,7 @@ private:
     } 
 
 // GPT's realization
-    void DisableEcho(termios* orig) {
+    void DisableEcho(termios* orig) { // TODO: hide cursor
         struct termios newTermios;
 
         // Получаем текущие настройки терминала
@@ -89,30 +101,29 @@ public:
         struct termios orig;
         this->DisableEcho(&orig);
 
-        while (true) {
-            if (!this->DoStep())
-                break;
-            this->Draw();
-        }
+        // while (true) {
+        //     if (!this->DoStep())
+        //         break;
+        //     this->Draw();
+        // }
+
+        Menu mainMenu = Menu(3, Button("Hello", Hello), 
+                                Button("Aboba", Aboba), 
+                                Button("Bye", Bye));
+        mainMenu.ChooseButton();
+
 
         this->EnableEcho(&orig);
     }
 };
 
-void Hello() {
-    std::cout << "hello" << std::endl;
-}
-
-void Bye() {
-    std::cout << "Bye" << std::endl;
-}
 
 int main() {
     Packman packman(1, 1);
-    // packman.MoveAndDraw();
+    packman.MoveAndDraw();
 
-    Menu mainMenu = Menu(2, Button("Hello", Hello), Button("Bye", Bye));
-    mainMenu.ChooseButton();
+    // Menu mainMenu = Menu(2, Button("Hello", Hello), Button("Bye", Bye));
+    // mainMenu.ChooseButton();
 
     return 0;
 }

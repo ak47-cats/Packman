@@ -3,6 +3,9 @@
 #include "menu.hpp"
 
 void Menu::Draw() {
+    std::cout << "\033[2J\033[1;1H"; // ANSI Escape Codes для очистки экрана и перемещения курсора 
+                                   //                                         в верхний левый угол
+
     for (size_t i = 0; i < currentButton_; i++)
         std::cout << "[-] " << buttons_[i].GetName() << std::endl;
 
@@ -23,12 +26,12 @@ void Menu::ChooseButton() {
         Draw();
         userAction = std::cin.get();
         switch (userAction) {
-            case UP:
-                currentButton_ = (currentButton_ + 1) % buttonCount_;
-                break;
+            case UP:                          
+                currentButton_ = (currentButton_ + buttonCount_ - 1) % buttonCount_;
+                break;                        // ^-- to fix underflowing
 
             case DOWN:
-                currentButton_ = (currentButton_ - 1) % buttonCount_;
+                currentButton_ = (currentButton_ + 1) % buttonCount_;
                 break;
 
             case CHOICE:

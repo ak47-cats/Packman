@@ -2,6 +2,7 @@
 #define MENU_HPP
 
 #include <string>
+#include <vector>
 #include <cstddef>
 #include <cassert>
 
@@ -28,17 +29,19 @@ public:
 class Menu {
 private:
     const size_t buttonCount_;
-    static const size_t maxButtonCount_ = 10;
+    // static const size_t maxButtonCount_ = 10;
     size_t currentButton_ = 0;
-    Button buttons_[maxButtonCount_];
+    std::vector<Button> buttons_; // NOTE: vector may be changed to something static
+    // Button buttons_[maxButtonCount_];
 
     void Draw();
 
 public:
     template<typename ... Buttons>
-    Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount), buttons_(buttons ...) {
+    Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount)/* , buttons_(buttons ...) */{
         // assert(sizeof...(Buttons) == buttonCount_); // TODO: make asserts befor initing 
         // assert(buttonCount_ <= maxButtonCount_); 
+        buttons_ = {buttons ...};
     }; 
 
     void ChooseButton();
