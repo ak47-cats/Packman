@@ -3,6 +3,7 @@
 
 #include <string>
 #include <cstddef>
+#include <cassert>
 
 using ButtonCallback = void (*)();
 
@@ -14,11 +15,11 @@ private:
 public:
     Button(std::string name, ButtonCallback Callback): name_(name), Callback_(Callback) {};
 
-    std::string GetName() {
+    std::string GetName() const {
         return name_;
     }
 
-    void Callback() {
+    void Callback() const {
         Callback_();
     }
 };
@@ -34,8 +35,11 @@ private:
     void Draw();
 
 public:
-    Menu(size_t buttonCount); // i need to make variadic parameters of this constructor
-                              // because i should init buttons
+    template<typename ... Buttons>
+    Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount), buttons_(buttons ...) {
+        // assert(sizeof...(Buttons) == buttonCount_); // TODO: make asserts befor initing 
+        // assert(buttonCount_ <= maxButtonCount_); 
+    }; 
 
     void ChooseButton();
 };

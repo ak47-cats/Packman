@@ -4,6 +4,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include "menu/menu.hpp"
+
 class Position {
 public:
     size_t x_;
@@ -97,9 +99,20 @@ public:
     }
 };
 
+void Hello() {
+    std::cout << "hello" << std::endl;
+}
+
+void Bye() {
+    std::cout << "Bye" << std::endl;
+}
+
 int main() {
     Packman packman(1, 1);
-    packman.MoveAndDraw();
+    // packman.MoveAndDraw();
+
+    Menu mainMenu = Menu(2, Button("Hello", Hello), Button("Bye", Bye));
+    mainMenu.ChooseButton();
 
     return 0;
 }
