@@ -1,6 +1,10 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include <vector>
+
+#include "character.hpp"
+
 class Position {
 public:
 	int x_;
@@ -14,6 +18,19 @@ enum Direction {
     DOWN  = 's',
     LEFT  = 'a',
     RIGHT = 'd'
+};
+
+class Map {
+private:
+    std::vector<Character> characters_; // NOTE: vector can be changed to array
+
+    template <typename ... Characters>
+    Map(Characters ... characters): characters_(characters) {};
+
+    void Draw();
+
+public:
+    void Show();
 };
 
 #endif // MAP_HPP
