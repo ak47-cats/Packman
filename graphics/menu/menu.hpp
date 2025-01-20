@@ -41,7 +41,7 @@ public:
     Menu(size_t buttonCount, Buttons ... buttons): buttonCount_(buttonCount) {
         assert(sizeof...(Buttons) == buttonCount_); 
         buttons_ = {buttons ...};
-    }; 
+    }
 
     void ChooseButton();
 };

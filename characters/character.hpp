@@ -2,7 +2,23 @@
 #define CHARACTER_HPP
 
 #include "event.hpp"
-#include "map.hpp"
+
+
+// TODO: move Direction and Position declaration to other file
+enum Direction { // NOTE: can be optimized with map
+    UP    = 'w',
+    DOWN  = 's',
+    LEFT  = 'a',
+    RIGHT = 'd'
+};
+
+class Position {
+public:
+	int x_;
+	int y_;
+
+	Position(int x, int y): x_(x), y_(y) {};
+};
 
 class Icon {
 public:
@@ -16,7 +32,7 @@ class Character {
 public:
     Position position_;
 
-private:
+protected:
     Direction direction_;
     Icon icon_;
 
@@ -26,6 +42,7 @@ private:
 public: 
     Character(Position position, Icon icon): position_(position), icon_(icon) {};
 
+    Position GetPosition() { return position_; }
     Icon GetIcon() { return icon_; }
     Direction GetDirection() { return direction_; }
 

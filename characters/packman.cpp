@@ -1,6 +1,6 @@
 #include "packman.hpp"
 
-void Packman::Character::ProcessEvent() {
+void Packman::ProcessEvent() {
     Event_t event = GetEvent();
 
     if (event == Event::NO_EVENT) // The most often variant
