@@ -46,7 +46,7 @@ public:
     Icon GetIcon() { return icon_; }
     Direction GetDirection() { return direction_; }
 
-    virtual void ProcessEvent();
+    virtual void ProcessEvent() = 0;
 };
 
 #endif // CHARACTER_HPP
