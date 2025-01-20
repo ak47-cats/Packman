@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY build)
 
-include_directories(include src characters graphics graphics/menu graphics/map)
+include_directories(include src)
 
 option(SANITIZE "Enable sanitizers" OFF)
 
@@ -29,7 +29,7 @@ if (SANITIZE)
 endif()
 
 
-file(GLOB_RECURSE SOURCES "src/*.cpp" "graphics/menu/*.cpp" "graphics/map/*.cpp" "characters/*.cpp" EXCLUDE "src/main.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" EXCLUDE "src/main.cpp")
 list(REMOVE_ITEM SOURCES "src/main.cpp")
 
 add_executable("main" ${SOURCES} src/main.cpp)
