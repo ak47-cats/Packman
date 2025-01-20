@@ -1,6 +1,7 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
+#include "event.hpp"
 #include "map.hpp"
 
 class Icon {
@@ -12,25 +13,23 @@ public:
 };
 
 class Character {
-private:
+public:
     Position position_;
+
+private:
     Direction direction_;
     Icon icon_;
+
+    bool IsEvent();
+    Event_t GetEvent();
 
 public: 
     Character(Position position, Icon icon): position_(position), icon_(icon) {};
 
-    Position GetPosition() {
-        return position_;
-    }
+    Icon GetIcon() { return icon_; }
+    Direction GetDirection() { return direction_; }
 
-    Icon GetIcon() {
-        return icon_;
-    }
-
-    void Turn(Direction direction) {
-        direction_ = direction;
-    }
+    virtual void ProcessEvent();
 };
 
 #endif // CHARACTER_HPP

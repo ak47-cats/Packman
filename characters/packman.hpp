@@ -3,6 +3,9 @@
 
 #include "character.hpp"
 
-class Packman: Character {};
+class Packman: Character {
+public: 
+    Packman(Position position, Icon icon): Character(position, icon) {}; // TODO: inherit construction
+};
 
 #endif // PACKMAN_HPP

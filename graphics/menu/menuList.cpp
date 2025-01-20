@@ -1,10 +1,13 @@
 #include <iostream>
 
 #include "menuList.hpp"
+#include "map.hpp"
+#include "packman.hpp"
 
 namespace MainMenu {
     void Play() {
-        std::cout << "Play" << std::endl;
+        Map map(Packman(Position(1, 1), Icon('@')));
+        map.Show();
     }
 
     void Options() {
