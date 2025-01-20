@@ -1,5 +1,5 @@
 #include "config.hpp"
-#include "menuList.hpp"
+#include "graphics/menu/menuList.hpp"
 
 int main() {
     TerminalConfig terminalConfig;

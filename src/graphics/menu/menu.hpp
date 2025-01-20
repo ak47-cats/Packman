@@ -2,6 +2,7 @@
 #define MENU_HPP
 
 #include <string>
+#include <cstring>
 #include <vector>
 #include <cstddef>
 #include <cassert>
@@ -11,13 +12,15 @@ using ButtonCallback = void (*)();
 class Button {
 private:
     ButtonCallback Callback_;
-    std::string name_;
+    char name_[20]; // TODO: maybe string should be used
 
 public:
-    Button(std::string name, ButtonCallback Callback): name_(name), Callback_(Callback) {};
+    Button(const char* name, ButtonCallback Callback): Callback_(Callback) {
+        memmove(name_, name, strlen(name)); // TODO: dangerous length, there can be overflow
+    };
 
     std::string GetName() const {
-        return name_;
+        return std::string(name_);
     }
 
     void Callback() const {
