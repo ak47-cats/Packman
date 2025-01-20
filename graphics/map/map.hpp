@@ -13,7 +13,7 @@ public:
 	Position(int x, int y): x_(x), y_(y) {};
 };
 
-enum Direction {
+enum Direction { // NOTE: can be optimized with map size
     UP    = 'w',
     DOWN  = 's',
     LEFT  = 'a',

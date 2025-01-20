@@ -29,7 +29,7 @@ if (SANITIZE)
 endif()
 
 
-file(GLOB_RECURSE SOURCES "src/*.cpp" "menu/*.cpp" "map/*.cpp" "characters/*.cpp" EXCLUDE "src/main.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" "graphics/menu/*.cpp" "graphics/map/*.cpp" "characters/*.cpp" EXCLUDE "src/main.cpp")
 list(REMOVE_ITEM SOURCES "src/main.cpp")
 
 add_executable("main" ${SOURCES} src/main.cpp)
