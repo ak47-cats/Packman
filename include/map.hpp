@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "characters/packman.hpp"
+#include "packman.hpp"
 
 class Map {
 private:

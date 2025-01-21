@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "menuList.hpp"
-#include "graphics/map/map.hpp"
-#include "characters/packman.hpp"
+#include "map.hpp"
+#include "packman.hpp"
 
 namespace MainMenu {
     void Play() {

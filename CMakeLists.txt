@@ -1,4 +1,22 @@
 cmake_minimum_required(VERSION 3.10)
+
+# --- Fetch FTXUI ----------------------------------------------------------------------------------
+include(FetchContent)
+
+set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
+FetchContent_Declare(ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+  GIT_TAG v4.1.1
+)
+
+FetchContent_GetProperties(ftxui)
+if(NOT ftxui_POPULATED)
+  FetchContent_Populate(ftxui)
+  add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
+#---------------------------------------------------------------------------------------------------
+
 project(MyProject LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -33,3 +51,5 @@ file(GLOB_RECURSE SOURCES "src/*.cpp" EXCLUDE "src/main.cpp")
 list(REMOVE_ITEM SOURCES "src/main.cpp")
 
 add_executable("main" ${SOURCES} src/main.cpp)
+
+target_link_libraries(main PRIVATE ftxui::screen ftxui::dom ftxui::component)
