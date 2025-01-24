@@ -8,12 +8,21 @@
 
 class Server {
 private:
+    class Player {
+    public:
+        socket_t socket;
+        char buffer[bufferSize] = {};
+    };
+
+    bool isValid = false;
     socket_t serverSocket; 
     sockaddr_in address;
+    int addressLength = sizeof(address);
     int opt = 1; // IDK what is opt
-    char buffer[bufferSize] = {};
-    std::vector<socket_t> playerSockets;
+    std::vector<Player> players;
     const std::size_t playerCount;
+
+    std::string GetIp();
 
     void WaitPlayers();
     void RunGameLoop();
@@ -24,10 +33,11 @@ private:
 
 
 public:
-    Server(const std::size_t playerCount, const std::string serverPort);
+    Server(const std::size_t playerCount, const std::size_t serverPort);
     ~Server();
 
     void Run();
+    bool IsValid();
 };
 
 #endif // SERVER_HPP

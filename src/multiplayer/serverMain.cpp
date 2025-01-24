@@ -15,9 +15,25 @@ int main(int argc, char* argv[]) {
 
         if (GetPlayerCount(argv[1], &playerCount)) {
                 Server server(playerCount, defaultServerPort);
-                server.Run();
+                if (server.IsValid())
+                    server.Run();
             }
     }
 
     return 0;
+}
+
+bool GetPlayerCount(char* playerCountStr, std::size_t* playerCountBuffer) {
+    if (playerCountBuffer == NULL || playerCountStr == NULL) {
+        std::cerr << "Null ptr in " << __FUNCTION__ << "()" << std::endl;
+        return false;
+    }
+
+    *playerCountBuffer = atoi(playerCountStr);
+    if (*playerCountBuffer > 0 && *playerCountBuffer <= maxPlayerCount)
+        return true;
+
+    std::cerr << "PLAYER_COUNT must be between 1 and " << maxPlayerCount << std::endl <<
+                  "Your input is " << *playerCountBuffer << std::endl;
+    return false;
 }
