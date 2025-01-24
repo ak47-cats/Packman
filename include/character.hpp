@@ -12,6 +12,8 @@ enum Direction { // NOTE: can be optimized with map
     RIGHT = 'd'
 };
 
+
+
 class Position {
 public:
 	int x_;
