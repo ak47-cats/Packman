@@ -3,11 +3,19 @@
 #include "menuList.hpp"
 #include "map.hpp"
 #include "packman.hpp"
+#include "client.hpp"
 
 namespace MainMenu {
     void Play() {
-        Map map(Packman(Position(1, 1), Icon('@')));
-        map.Show();
+        // Map map(Packman(Position(1, 1), Icon('@')));
+        // map.Show();
+
+        Client client;
+        if (!client.IsValid()) {
+            std::cout << "Client is invalid" << std::endl;
+            return;
+        }
+        client.Play();
     }
 
     void Options() {
