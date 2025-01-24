@@ -45,6 +45,8 @@ Server::~Server() {
         close(player.socket);
         memset(player.buffer, 0, sizeof(player.buffer));
     }
+    
+    close(serverSocket);
 }
 
 // ChatGPS's realization
@@ -97,7 +99,7 @@ void Server::GetPlayerData() {
 }
 
 void Server::ProcessPlayerData() {
-
+    // TODO:
 }
 
 void Server::SendProcessedData() {

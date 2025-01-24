@@ -6,21 +6,23 @@
 class Client {
 private:
     socket_t clientSocket;
-    socket_t serverSocket;
     sockaddr_in serverAddress;
-    char buffer[bufferSize]; 
+    char buffer[bufferSize] = {}; 
+    bool isValid = false;
 
     bool ConnectToServer();
 
     void GetClientActions();
     void SendData();
-    void RecieveProcessedData();
+    void RecieveData();
+    void ProcessRecievedData();
 
-public: // TODO: add interface changing server IP 
+public: // TODO: add interface changing server IP and port
     Client();
     ~Client();
 
     void Play();
+    bool IsValid();
 };
 
 #endif // CLIENT_HPP

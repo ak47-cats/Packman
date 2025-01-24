@@ -47,7 +47,7 @@ if (SANITIZE)
 endif()
 
 
-file(GLOB_RECURSE SOURCES "src/*.cpp" EXCLUDE "src/main.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" EXCLUDE "src/main.cpp" "src/multiplayer/serverMain.cpp")
 list(REMOVE_ITEM SOURCES "src/main.cpp")
 
 add_executable("main" ${SOURCES} src/main.cpp)
