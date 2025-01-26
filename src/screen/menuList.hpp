@@ -5,8 +5,6 @@
 
 #include "screen/menu.hpp"
 
-namespace MenuList {
-
 enum MENU_LIST {
     MAIN,
     OPTIONS, 
@@ -15,18 +13,20 @@ enum MENU_LIST {
     MENU_COUNT
 };
 
-class MainMenu: public Menu {};
-class OptionsMenu: public Menu {};
-class PlayMenu: public Menu {};
-
 class MenuList {
 private:
     std::array<Menu, MENU_LIST::MENU_COUNT> list;
     std::size_t currentMenu = MENU_LIST::MAIN;
 
+    // TODO: add auto code generation
+    void ToMain()     {currentMenu = MENU_LIST::MAIN;}
+    void ToOptinons() {currentMenu = MENU_LIST::OPTIONS;}
+    void ToPlay()     {currentMenu = MENU_LIST::PLAY;}
+
 public: 
     MenuList();
+    
+    ftxui::Component Rendering();
 };
-}
 
-#endif // MENU_LIST_HPP
+#endif // MENU_LIST_HPP/

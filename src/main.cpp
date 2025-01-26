@@ -1,7 +1,7 @@
 // #include "config.hpp"
 // #include "menuList.hpp"
 #include "screen/screen.hpp"
-#include "screen/menu.hpp"
+#include "screen/menuList.hpp"
 #include <iostream>
 
 void Goida() {
@@ -20,18 +20,10 @@ int main() {
 
     
 
-    Menu menu(ButtonInterface("aboba", [] {std::cout << "goida" << std::endl;}),
-              ButtonInterface("hahah", [] {std::cout << "ebala" << std::endl;}));
+    MenuList menuList;
+
     auto screen = ftxui::ScreenInteractive::FitComponent();
-    auto component = ftxui::Renderer(menu.buttons, [&] {
-        return ftxui::vbox({
-               ftxui::text("Menu test"),
-               ftxui::separator(),  
-               menu.buttons->Render() | ftxui::flex,
-            }) |
-            ftxui::flex | ftxui::border;
-    });
-    screen.Loop(component);
+    screen.Loop(menuList.Rendering());
 
     return 0;
 }

@@ -3,8 +3,19 @@
 ButtonInterface::ButtonInterface(std::string name, std::function<void ()> Callback): name(name),
                                                                                      Callback(Callback) {}
 
-ftxui::Element Menu::Render() {
-    return (buttons->Render() | ftxui::flex);
+void Menu::SetRendering() {
+    rendering = ftxui::Renderer(this->buttons, [&] {
+            return ftxui::vbox({
+                ftxui::text(name),
+                ftxui::separator(),  
+                this->buttons->Render() | ftxui::flex,
+                }) |
+                ftxui::flex | ftxui::border;
+        });
+}
+
+ftxui::Component Menu::Rendering() {
+    return rendering;
 }
 
 ftxui::ButtonOption DefaultStyle() {
