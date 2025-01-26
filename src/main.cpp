@@ -1,14 +1,38 @@
-#include "config.hpp"
-#include "menuList.hpp"
+// #include "config.hpp"
+// #include "menuList.hpp"
+#include "screen/screen.hpp"
+#include "screen/menu.hpp"
+#include <iostream>
+
+void Goida() {
+    std::cout << "goida" << std::endl;
+}
 
 int main() {
-    TerminalConfig terminalConfig;
-    terminalConfig.Enable();
+//     TerminalConfig terminalConfig;
+//     terminalConfig.Enable();
+//     MenuList menuList;
+//     menuList.mainMenu.Open();
+//     terminalConfig.Disable();
 
-    MenuList menuList;
-    menuList.mainMenu.Open();
+    // Screen screen;
+    // screen.Show();
 
-    terminalConfig.Disable();
+    
+
+    Menu menu(ButtonInterface("aboba", [] {std::cout << "goida" << std::endl;}),
+              ButtonInterface("hahah", [] {std::cout << "ebala" << std::endl;}));
+    auto screen = ftxui::ScreenInteractive::FitComponent();
+    auto component = ftxui::Renderer(menu.buttons, [&] {
+        return ftxui::vbox({
+               ftxui::text("Menu test"),
+               ftxui::separator(),  
+               menu.buttons->Render() | ftxui::flex,
+            }) |
+            ftxui::flex | ftxui::border;
+    });
+    screen.Loop(component);
+
     return 0;
 }
 
@@ -62,8 +86,13 @@ int main() {
 //         Container::Horizontal({btn_dec_10, btn_inc_10}, &row) | flex,
 //     });
     
+//     auto screen = ScreenInteractive::FitComponent();
+    
 //     // Modify the way to render them on screen:
 //     auto component = Renderer(buttons, [&] {
+//         if (value == 100)
+//           screen.ExitLoopClosure()();
+
 //         return vbox({
 //                 text("value = " + std::to_string(value)),
 //                 separator(),
@@ -71,8 +100,6 @@ int main() {
 //             }) |
 //             flex | border;
 //     });
-    
-//     auto screen = ScreenInteractive::FitComponent();
 //     screen.Loop(component);
 //     return 0;
 // }

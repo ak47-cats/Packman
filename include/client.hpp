@@ -5,7 +5,7 @@
 
 class Client {
 private:
-    socket_t clientSocket;
+    socket_t clientSocket;  
     sockaddr_in serverAddress;
     char buffer[bufferSize] = {}; 
     bool isValid = false;

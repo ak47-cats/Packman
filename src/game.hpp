@@ -2,6 +2,7 @@
 #define Game_hpp
 
 #include <vector>
+#include <array>
 
 namespace Game{
 

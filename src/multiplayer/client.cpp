@@ -49,6 +49,7 @@ void Client::SendData() {
 }
 
 void Client::RecieveData() {
+    memset(buffer, 0, bufferSize);
     read(clientSocket, buffer, 1024);
 }
 
